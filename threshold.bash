@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# This tool will allow you to setup a simple threshold based on ICMP or TCP which will execute just about any action you define if triggered
+
 if [ $(id -u) -ne 0 ]
 then 
 	echo ""
