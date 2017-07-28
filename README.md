@@ -6,19 +6,19 @@ A simple tool which allows you to set a ping or TCP-based monitor/threshold, and
 `$ wget https://raw.githubusercontent.com/secureoptions/threshold/master/install`<br />
 
 \# *Run the installation script*<br />
-$ sudo sh install<br />
+`$ sudo sh install`<br />
 
 \# *Verify installation*<br />
-$ sudo threshold --version<br />
+`$ sudo threshold --version`<br />
 
 ## Example Syntax and Usage
 You can create a monitor/threshold to ping or establish TCP handshakes with a target IP or DNS hostname in a continual loop, and then execute a given command if triggered using the following syntax:
 
-   *threshold -ciPt -d __target__ -a "__action__"*
+    *threshold -ciPt -d __target__ -a "__action__"*
 
 For example let's say you wanted to ping a target of "192.168.1.1", and create a threshold that considers 5 consecutive ping failures from that target to be a trigger event. Let's also say that you want to run a pcap when this happens:
 
-   *threshold -c 5 -d 192.168.0.1 -a "tcpdump -i eth0 -W 1 -C 10 -w my.pcap"*
+    *threshold -c 5 -d 192.168.0.1 -a "tcpdump -i eth0 -W 1 -C 10 -w my.pcap"*
    
 Note that the trigger action (-a) itself must be enclosed in quotes.
   
