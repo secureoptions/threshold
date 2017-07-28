@@ -14,7 +14,7 @@ $ sudo threshold --version<br />
 ## Example Syntax and Usage
 You can create a monitor/threshold to ping or establish TCP handshakes with a target IP or DNS hostname in a continual loop, and then execute a given command if triggered using the following syntax:
 
-   threshold -ciPt -d <target> -a "<action>"
+   *threshold -ciPt -d __target__ -a "__action__"*
 
 For example let's say you wanted to ping a target of "192.168.1.1", and create a threshold that considers 5 consecutive ping failures from that target to be a trigger event. Let's also say that you want to run a pcap when this happens:
 
@@ -23,37 +23,29 @@ For example let's say you wanted to ping a target of "192.168.1.1", and create a
 Note that the trigger action (-a) itself must be enclosed in quotes.
   
 
-_"-a | --action"_
+__"-a | --action"__
 The user-defined action to take if the threshold is triggered. This can be just about any command that you can execute from the command-line.
 
-.B
-.IP "-c | --count"
+__"-c | --count"__
 Default is 3. The number of consective ping packets that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
 
-.B
-.IP "-d | --destination"
+__"-d | --destination"__
 The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive, then the defined action (-a) is taken
 
-.B
-.IP "-i | --interval"
+__"-i | --interval"__
 Default is 5. The interval in seconds that you want to send out a ping packet. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
 
-.B
-.IP "-k | --kill"
+__"-k | --kill"__
 Use to kill either a specific trigger/action job (ie. threshold -k 3509), or kill ALL trigger/action jobs (ie. kill -k all)
 
-.B
-.IP "-l | --list"
+__"-l | --list"__
 List the active trigger/action jobs
 
-.B
-.IP "-P | --port"
+__"-P | --port"__
 The TCP port that will be used to establish TCP handshakes on. Using this flag will also cause threshold to use TCP rather than ICMP/ping. Also, successful TCP handshakes are followed by TCP FINs to close the connection when TIMEOUT (-t) expires.
 
-.B
-.IP "-t | --timeout"
+__"-t | --timeout"__
 Default is 1. The time in seconds to wait for a response back to ping or TCP SYN/ACK from target. If used with (-P) then timeout is not only the amount of time to wait for response for TCP SYN/ACK, but also the time to wait before sending FIN on successful TCP connections.
 
-.B
-.IP "-v | --version"
+__"-v | --version"__
 see the current version of threshold
