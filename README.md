@@ -23,29 +23,29 @@ For example let's say you wanted to ping a target of "192.168.1.1", and create a
 Note that the trigger action (-a) itself must be enclosed in quotes.
   
 
-__"-a | --action"__<br />
+__-a | --action__<br />
    The user-defined action to take if the threshold is triggered. This can be just about any command that you can execute from the command-line.
 
-__"-c | --count"__<br />
+__-c | --count__<br />
    Default is 3. The number of consective ping packets that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
 
-__"-d | --destination"__<br />
+__-d | --destination__<br />
    The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive, then the defined action (-a) is taken
 
-__"-i | --interval"__<br />
+__-i | --interval__<br />
    Default is 5. The interval in seconds that you want to send out a ping packet. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
 
-__"-k | --kill"__<br />
+__-k | --kill__<br />
    Use to kill either a specific trigger/action job (ie. threshold -k 3509), or kill ALL trigger/action jobs (ie. kill -k all)
 
-__"-l | --list"__<br />
+__-l | --list__<br />
    List the active trigger/action jobs
 
-__"-P | --port"__<br />
+__-P | --port__<br />
    The TCP port that will be used to establish TCP handshakes on. Using this flag will also cause threshold to use TCP rather than ICMP/ping. Also, successful TCP handshakes are followed by TCP FINs to close the connection when TIMEOUT (-t) expires.
 
-__"-t | --timeout"__<br />
+__-t | --timeout__<br />
    Default is 1. The time in seconds to wait for a response back to ping or TCP SYN/ACK from target. If used with (-P) then timeout is not only the amount of time to wait for response for TCP SYN/ACK, but also the time to wait before sending FIN on successful TCP connections.
 
-__"-v | --version"__<br />
+__-v | --version__<br />
    See the current version of threshold
