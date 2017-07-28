@@ -25,3 +25,5 @@ gzip /usr/share/man/man1/threshold.1
 echo ""
 echo "Done!"
 echo "Use \"man threshold\" for usage details"
+
+rm -- $0
