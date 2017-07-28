@@ -3,7 +3,7 @@ A simple tool which allows you to set a ping or TCP-based monitor/threshold, and
 
 ## Installation
 \# *download the installation script from Github*<br />
-$ wget https://raw.githubusercontent.com/secureoptions/threshold/master/install<br />
+`$ wget https://raw.githubusercontent.com/secureoptions/threshold/master/install`<br />
 
 \# *Run the installation script*<br />
 $ sudo sh install<br />
