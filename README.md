@@ -11,6 +11,5 @@ $ sudo sh install<br />
 \# *Verify installation*<br />
 $ sudo threshold --version<br />
 
-## Manually running the program as a script
-\# *download the installation script onto your local machine*<br />
-$ wget 
+## Example Syntax 
+- 
