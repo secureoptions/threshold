@@ -14,7 +14,7 @@ A simple tool which allows you to set a ping or TCP-based monitor/threshold, and
 ## Example Syntax and Usage
 You can create a monitor/threshold to ping or establish TCP handshakes with a target IP or DNS hostname in a continual loop, and then execute a given command if triggered using the following syntax:
 
-    *threshold -ciPt -d __target__ -a "__action__"*
+-*threshold -ciPt -d __target__ -a "__action__"*
 
 For example let's say you wanted to ping a target of "192.168.1.1", and create a threshold that considers 5 consecutive ping failures from that target to be a trigger event. Let's also say that you want to run a pcap when this happens:
 
