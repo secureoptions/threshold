@@ -1,0 +1,53 @@
+.TH threshold 1 "28 July 2017" "version 1.0"
+
+.SH NAME
+threshold \- a simple monitor and trigger tool
+
+.SH SYNOPSIS
+.B Example Syntax
+   threshold -ciPt -d
+.I "target"
+-a "
+.I action
+"
+
+.B Example Usage
+   threshold -t 1 -i 3 -c 5 -d 192.168.0.1 -a "tcpdump -i eth0 -W 1 -C 10 -w my.pcap"
+  
+.SH DESCRIPTION
+threshold is a network tool which allows you to set up a simple monitor/trigger job. For example can create a continuous ping or netcat to a target IP or host. If the threshold fails, then the user-defined action will be executed.
+  
+.SH OPTIONS
+.B 
+.IP "-a | --action"
+the user-defined action to take if the threshold is triggered. This can be just about any command that you can execute from the command-line.
+
+.B
+.IP "-c | --count"
+the number of consective ping packets that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
+
+.B
+.IP "-d | --destination"
+the target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive, then the defined action (-a) is taken
+
+.B
+.IP "-i | --interval"
+the interval in seconds that you want to send out a ping packet. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
+
+.B
+.IP "-k | --kill"
+use to kill either a specific trigger/action job (ie. threshold -k 3509), or kill ALL trigger/action jobs (ie. kill -k all)
+
+.B
+.IP "-l | --list"
+list the active trigger/action jobs
+
+.B
+.IP "-P | --port"
+the TCP port that will be used to establish TCP handshakes on. Using this flag will also cause threshold to use TCP rather than ICMP/ping
+
+.SH BUGS
+No known bugs at this time. Please contact benfowler2012@gmail.com if you come across any
+ 
+.SH AUTHOR
+Ben Fowler (benfowler2012@gmail.com)
