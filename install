@@ -9,17 +9,17 @@ then
 	echo ""
     exit
 fi
-echo "Installing... "
+echo "Installing..."
 
 mkdir /etc/threshold/
 mkdir /etc/threshold/pids/
 mkdir /etc/threshold/triggers/
 mkdir /etc/threshold/actions/
 
-wget -O /usr/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh > /dev/null
+wget -O -q /usr/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh
 chmod 755 /usr/bin/threshold
 
-wget -O /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1 > /dev/null
+wget -O -q /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1
 gzip /usr/share/man/man1/threshold.1
 
 echo ""
