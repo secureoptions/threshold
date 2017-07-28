@@ -54,16 +54,16 @@ __-v | --version__<br />
 You can see which thresholds you have active with the following command:<br />
     sudo threshold -l<br />
  <br />
-    Job: 1478
-    Trigger: Ping 192.168.3.199 every 5 second(s). If 5 consecutive pings fail, trigger action.
-    Action: my action
+    Job: 1478<br />
+    Trigger: Ping 192.168.3.199 every 5 second(s). If 5 consecutive pings fail, trigger action.<br />
+    Action: my action<br />
     
 ## Deleting active jobs<br />
 You can delete ALL active jobs or a specific job<br />
 
 \# ALL jobs<br />
-    threshold -k all
+    threshold -k all</br>
 
 \# a specific job<br />
-    threshold -k 1478
+    threshold -k 1478<br />
     
