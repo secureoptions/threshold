@@ -1,6 +1,17 @@
 #! /bin/bash
 
-# This tool will allow you to setup a simple threshold based on ICMP or TCP which will execute just about any action you define if triggered
+# Copyright (C) 2007, 2010-2017 Free Software Foundation, Inc.
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
 
 if [ $(id -u) -ne 0 ]
 then 
@@ -16,6 +27,7 @@ INTERVAL=5
 COUNT=3
 KILL="0"
 LIST=0
+VERSION="threshold v1.0"
 
 # Make sure there is at least one argument being used
 if [ $# -eq 0 ]
@@ -59,6 +71,10 @@ else
 				LIST=1
 				shift;shift
 				;;
+			-v|--version)
+				VERS=1
+				shift;shift
+				;;
 			*)
 				echo "$0: Unknown argument \"${1}\"" >&2
 				echo "see \"man trigger\" for usage details" >&2
@@ -66,7 +82,13 @@ else
 				;;
 		esac
 	done
-    
+	
+	#Check if user wants to see version
+	if [ "$VERS" == "1" ]
+	then
+		echo "$VERSION"
+		exit
+	fi
 	
 	# Prepend a sequential number to each PID lock file so that we can run multiple instances if needed
 	EXISTING_FILES_COUNT=$(ls -1 /etc/threshold/triggers | wc -l)
@@ -122,7 +144,8 @@ else
 			exit
 		fi
 	fi
-
+	
+	# Check if user wants to list jobs
 	if [ $LIST -eq 1 ]
 	then
 		if [ $(ls -1 /etc/threshold/triggers/ | wc -l) -ge 1 ]
@@ -169,7 +192,7 @@ else
 			# Run the trigger in a loop as a background job
 			if [ $PORT -eq 0 ]
 			then
-				echo "ping -c $COUNT -i $INTERVAL -W $TIMEOUT $HOSTIP" > /etc/threshold/triggers/${SEQUENCE}
+				echo "Ping $HOSTIP every $INTERVAL second(s). If $COUNT consecutive pings fail, trigger action." > /etc/threshold/triggers/${SEQUENCE}
 				while true; do
 					ping -c $COUNT -i $INTERVAL -W $TIMEOUT $HOSTIP > /dev/null 2>&1
 					result=$?
@@ -183,15 +206,20 @@ else
 				echo $PID > /etc/threshold/pids/${SEQUENCE}
 
 			else
-				echo "nc -w $TIMEOUT $HOSTIP $PORT" > /etc/threshold/triggers/${SEQUENCE}
+				echo "TCP handshake with ${HOSTIP}:${PORT} every $INTERVAL seconds. If $COUNT consecutive handshake(s) fail, trigger action'" > /etc/threshold/triggers/${SEQUENCE}
 				while true; do
-					nc -w $TIMEOUT $HOSTIP $PORT > /dev/null 2>&1
-					result=$?
-					if [ $result -ne 0 ]
-					then 
-						nohup sh ${USERCOMMAND} > /dev/null 2>&1 &
-						break
-					fi
+					i=0
+					while [ $i -lt $COUNT ]; do
+						nc -w $TIMEOUT $HOSTIP $PORT > /dev/null 2>&1
+						result=$?
+						if [ $result -ne 0 ]
+						then 
+							i=$((i+1))
+							sleep $INTERVAL
+						fi
+					done	
+					nohup sh ${USERCOMMAND} > /dev/null 2>&1 &
+					break
 				done &
 				PID=$!
 				echo $PID > /etc/threshold/pids/${SEQUENCE}
