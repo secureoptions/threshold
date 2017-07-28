@@ -20,35 +20,35 @@ threshold is a network tool which allows you to set up a simple monitor/trigger 
 .SH OPTIONS
 .B 
 .IP "-a | --action"
-the user-defined action to take if the threshold is triggered. This can be just about any command that you can execute from the command-line.
+The user-defined action to take if the threshold is triggered. This can be just about any command that you can execute from the command-line.
 
 .B
 .IP "-c | --count"
-the number of consective ping packets that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
+Default is 3. The number of consective ping packets that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
 
 .B
 .IP "-d | --destination"
-the target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive, then the defined action (-a) is taken
+The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive, then the defined action (-a) is taken
 
 .B
 .IP "-i | --interval"
-the interval in seconds that you want to send out a ping packet. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
+Default is 5. The interval in seconds that you want to send out a ping packet. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
 
 .B
 .IP "-k | --kill"
-use to kill either a specific trigger/action job (ie. threshold -k 3509), or kill ALL trigger/action jobs (ie. kill -k all)
+Use to kill either a specific trigger/action job (ie. threshold -k 3509), or kill ALL trigger/action jobs (ie. kill -k all)
 
 .B
 .IP "-l | --list"
-list the active trigger/action jobs
+List the active trigger/action jobs
 
 .B
 .IP "-P | --port"
-the TCP port that will be used to establish TCP handshakes on. Using this flag will also cause threshold to use TCP rather than ICMP/ping. Also, successful TCP handshakes are followed by TCP FINs to close the connection when TIMEOUT (-t) expires.
+The TCP port that will be used to establish TCP handshakes on. Using this flag will also cause threshold to use TCP rather than ICMP/ping. Also, successful TCP handshakes are followed by TCP FINs to close the connection when TIMEOUT (-t) expires.
 
 .B
 .IP "-t | --timeout"
-the time in seconds to wait for a response back to ping or TCP SYN/ACK from target. If used with (-P) then timeout is not only the amount of time to wait for response for TCP SYN/ACK, but also the time to wait before sending FIN on successful TCP connections.
+Default is 1. The time in seconds to wait for a response back to ping or TCP SYN/ACK from target. If used with (-P) then timeout is not only the amount of time to wait for response for TCP SYN/ACK, but also the time to wait before sending FIN on successful TCP connections.
 
 .B
 .IP "-v | --version"
