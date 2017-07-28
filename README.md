@@ -37,7 +37,7 @@ __-i | --interval__<br />
    Default is 5. The interval in seconds that you want to send out a ping packet. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
 
 __-k | --kill__<br />
-   Use to kill either a specific trigger/action job (ie. threshold -k 3509), or kill ALL trigger/action jobs (ie. kill -k all)
+   Use to kill either a specific trigger/action job (ie. threshold -k 3509), or kill ALL trigger/action jobs (ie. threshold -k all)
 
 __-l | --list__<br />
    List the active trigger/action jobs
