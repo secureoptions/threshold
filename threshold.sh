@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 # Copyright (C) 2007, 2010-2017 Free Software Foundation, Inc.
 
@@ -215,6 +215,8 @@ else
 						if [ $result -ne 0 ]
 						then 
 							i=$((i+1))
+							sleep $INTERVAL
+						else
 							sleep $INTERVAL
 						fi
 					done	
