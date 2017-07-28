@@ -3,13 +3,13 @@ A simple tool which allows you to set a ping or TCP-based monitor/threshold, and
 
 ## Installation
 \# *download the installation script from Github*<br />
-`$ wget https://raw.githubusercontent.com/secureoptions/threshold/master/install`<br />
+`wget https://raw.githubusercontent.com/secureoptions/threshold/master/install`<br />
 
 \# *Run the installation script*<br />
-`$ sudo sh install`<br />
+`sudo sh install`<br />
 
 \# *Verify installation*<br />
-`$ sudo threshold --version`<br />
+`sudo threshold --version`<br />
 
 ## Example Syntax and Usage
 You can create a monitor/threshold to ping or establish TCP handshakes with a target IP or DNS hostname in a continual loop, and then execute a given command if triggered using the following syntax:
