@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # Copyright (C) 2007, 2010-2017 Free Software Foundation, Inc.
 
@@ -27,6 +27,7 @@ INTERVAL=5
 COUNT=3
 KILL="0"
 LIST=0
+VERS=0
 VERSION="threshold v1.0"
 
 # Make sure there is at least one argument being used
@@ -83,7 +84,7 @@ else
 		esac
 	done
 	
-	#Check if user wants to see version
+	# Check if user wants to see version
 	if [ "$VERS" == "1" ]
 	then
 		echo "$VERSION"
