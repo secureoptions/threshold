@@ -19,7 +19,7 @@ mkdir /etc/threshold/actions/
 wget -O -q /usr/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold
 chmod 755 /usr/bin/threshold
 
-wget -O -q /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1
+wget -O -q /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1.man
 gzip /usr/share/man/man1/threshold.1
 
 echo ""
