@@ -218,6 +218,7 @@ else
 							i=$((i+1))
 							sleep $INTERVAL
 						else
+							i=0
 							sleep $INTERVAL
 						fi
 					done	
