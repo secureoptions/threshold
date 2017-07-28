@@ -12,6 +12,7 @@ A simple tool which allows you to set up a ping or TCP-based monitor/threshold, 
 `sudo threshold --version`<br />
 
 ## Example Syntax and Usage
+(see "man threshold" for detailed info)
 You can create a monitor/threshold to ping or establish TCP handshakes with a target IP or DNS hostname in a continual loop, and then execute a given command if triggered using the following syntax:
 
    *threshold -ciPt -d __target__ -a "__action__"*
