@@ -28,13 +28,13 @@ __-a | --action__<br />
    The user-defined action to take if the threshold is triggered. This can be just about any command that you can execute from the command-line.
 
 __-c | --count__<br />
-   Default is 3. The number of consective ping packets that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
+   Default is 3. The number of consective pings that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
 
 __-d | --destination__<br />
-   The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive, then the defined action (-a) is taken
+   The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive for the parameters you define, then the action (-a) is taken
 
 __-i | --interval__<br />
-   Default is 5. The interval in seconds that you want to send out a ping packet. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
+   Default is 5. The interval in seconds that you want to send out a single ping. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
 
 __-k | --kill__<br />
    Use to kill either a specific trigger/action job (ie. threshold -k 3509), or kill ALL trigger/action jobs (ie. threshold -k all)
