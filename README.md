@@ -2,7 +2,7 @@
 A simple tool which allows you to set up a ping or TCP-based monitor/threshold, and then executes a user-defined command if triggered
 
 ## Installation
-\# *download the installation script from Github*<br />
+\# *From Linux command line download the installation script from Github*<br />
 `wget https://raw.githubusercontent.com/secureoptions/threshold/master/install`<br />
 
 \# *Run the installation script*<br />
