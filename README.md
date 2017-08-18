@@ -17,11 +17,11 @@ You can create a monitor/threshold to ping or establish TCP handshakes with a ta
 
    *threshold -ciPt -d __target__ -a "__action__"*
 
-For example let's say you wanted to ping a target of "192.168.1.1", and create a threshold that considers 5 consecutive ping failures from that target to be a trigger event. Let's also say that you want to run a pcap when this happens:
+For example let's say you want to set up a ping monitor against target "192.168.1.1", which triggers a packet capture (tcpdump) after 5 consecutive failures:
 
-    sudo threshold -c 5 -d 192.168.1.1 -a "tcpdump -i eth0 -W 1 -C 10 -w my.pcap"
+    sudo threshold -c 5 -d 192.168.1.1 -a "tcpdump -i eth0 -c 50000 -w my.pcap"
    
-Note that the trigger action (-a) itself must be enclosed in quotes.
+Note that the trigger action (-a) itself must be enclosed in quotes. Also, note that tcpdump is prevented from running forever since "-c 50000" has been set. This tells tcpdump that only 50,000 packets are to be captured before it exits the capture. It is always best to set similar limits like this with actions to keep data from filling up your hard drive (such as might happen if left running over-night).
   
 
 __-a | --action__<br />
