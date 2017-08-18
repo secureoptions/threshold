@@ -17,7 +17,8 @@ mkdir /etc/threshold/triggers/
 mkdir /etc/threshold/actions/
 
 # Check if device is a Mac or *nix
-result=$(sw_vers > /dev/null)
+sw_vers > /dev/null
+result=$?
 
 if [ $result -eq 0 ]
 then
