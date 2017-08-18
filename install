@@ -16,8 +16,17 @@ mkdir /etc/threshold/pids/
 mkdir /etc/threshold/triggers/
 mkdir /etc/threshold/actions/
 
-curl -o /usr/local/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh >> /dev/null 
-chmod 755 /usr/local/bin/threshold
+# Check if device is a Mac or *nix
+result=$(sw_vers > /dev/null)
+
+if [ "$result" == "0" ]
+then
+   curl -o /usr/local/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh >> /dev/null 
+   chmod 755 /usr/local/bin/threshold
+else 
+   curl -o /usr/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh >> /dev/null 
+   chmod 755 /usr/bin/threshold
+ fi
 
 curl -o /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1.man >> /dev/null
 gzip /usr/share/man/man1/threshold.1 >> /dev/null
