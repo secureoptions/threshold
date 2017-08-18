@@ -19,7 +19,7 @@ mkdir /etc/threshold/actions/
 # Check if device is a Mac or *nix
 result=$(sw_vers > /dev/null)
 
-if [ "$result" == "0" ]
+if [ $result -eq 0 ]
 then
    curl -o /usr/local/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh >> /dev/null 
    chmod 755 /usr/local/bin/threshold
