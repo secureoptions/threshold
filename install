@@ -16,10 +16,10 @@ mkdir /etc/threshold/pids/
 mkdir /etc/threshold/triggers/
 mkdir /etc/threshold/actions/
 
-curl -O /usr/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh >> /dev/null 
+curl -o /usr/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh >> /dev/null 
 chmod 755 /usr/bin/threshold
 
-curl -O /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1.man >> /dev/null
+curl -o /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1.man >> /dev/null
 gzip /usr/share/man/man1/threshold.1 >> /dev/null
 
 echo ""
