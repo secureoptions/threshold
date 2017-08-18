@@ -1,5 +1,5 @@
 # threshold
-A simple tool which allows you to set up a ping or TCP-based monitor against a network host. The monitor will execute a user-defined command if detects failure to the host.
+A simple tool which allows you to set up a ping or TCP-based monitor against a network host. The monitor will execute a user-defined command if it detects failure to the host.
 
 ## Installation
 \# *From Linux or Mac OS terminal download the installation script from Github*<br />
