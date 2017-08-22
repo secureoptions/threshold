@@ -15,6 +15,7 @@ mkdir /etc/threshold/
 mkdir /etc/threshold/pids/
 mkdir /etc/threshold/triggers/
 mkdir /etc/threshold/actions/
+mkdir /etc/threshold/curlpids/
 
 # Check if device is a Mac or *nix
 sw_vers > /dev/null
