@@ -24,6 +24,7 @@ fi
 PORT=0
 TIMEOUT=1
 INTERVAL=5
+BACK=60
 COUNT=3
 KILL="0"
 LIST=0
@@ -76,9 +77,13 @@ else
 				VERS=1
 				shift;shift
 				;;
+			-b|--backoff)
+				BACK="${2}"
+				shift;shift
+				;;
 			*)
 				echo "$0: Unknown argument \"${1}\"" >&2
-				echo "see \"man trigger\" for usage details" >&2
+				echo "see \"man threshold\" for usage details" >&2
 				exit 1
 				;;
 		esac
@@ -191,7 +196,45 @@ else
 			echo "rm -- \$0" >> ${USERCOMMAND}
 			
 			# Run the trigger in a loop as a background job
-			if [ $PORT -eq 0 ]
+			if [[ $HOSTIP =~ [h,H][t,T][t,T][p,P]+ ]]
+			then
+				if [ $TIMEOUT -eq 1 ]
+				  then
+					  TIMEOUT=60
+			    fi
+				echo "Download ${HOSTIP}. If transfer takes longer than ${TIMEOUT} sec, trigger action." > /etc/threshold/triggers/${SEQUENCE}
+				curl_loop() {
+						curl -o /dev/null -s -k ${HOSTIP} &
+						PID=$!
+						echo $PID > /etc/threshold/curlpids/${SEQUENCE}
+						EXIST=$(cat /etc/threshold/curlpids/${SEQUENCE})			
+						TIME=0
+						while true; do
+							   sleep 1
+							  ((TIME++))
+							   if [ $TIME -gt $TIMEOUT ]
+							   then
+									if [ "$(ps -p ${EXIST} | tail -1 | awk '{print $1}')" == "${EXIST}" ]
+									then
+									   nohup sh ${USERCOMMAND} > /dev/null 2>&1 &
+									   kill -9 ${EXIST}
+									   rm -f /etc/threshold/curlpids/${SEQUENCE}
+									   break
+									fi
+								elif [ "$(ps -p ${EXIST} | tail -1 | awk '{print $1}')" != "${EXIST}" ]
+								then
+									rm -f /etc/threshold/curlpids/${SEQUENCE}
+									sleep ${BACK}
+									curl_loop
+									break
+								fi
+							done &
+							PID=$! 
+							echo $PID > /etc/threshold/pids/${SEQUENCE}	
+					}
+					curl_loop
+						
+			elif [ $PORT -eq 0 ]
 			then
 				echo "Ping $HOSTIP every $INTERVAL second(s). If $COUNT consecutive pings fail, trigger action." > /etc/threshold/triggers/${SEQUENCE}
 				while true; do
@@ -205,7 +248,6 @@ else
 				done &
 				PID=$!
 				echo $PID > /etc/threshold/pids/${SEQUENCE}
-
 			else
 				echo "TCP handshake with ${HOSTIP}:${PORT} every $INTERVAL seconds. If $COUNT consecutive handshake(s) fail, trigger action'" > /etc/threshold/triggers/${SEQUENCE}
 				while true; do
