@@ -1,5 +1,5 @@
 # threshold
-A simple tool which allows you to set up a ping or TCP-based monitor against a network host. The monitor will execute a user-defined command if it detects failure to the host.
+A simple tool which allows you to set up a ping, TCP-based, or HTTP/HTTPs file transfer monitor against a network host. The monitor will execute a user-defined command if it detects failure to the host.
 
 ## Installation
 \# *From Linux or Mac OS terminal download the installation script from Github*<br />
@@ -13,7 +13,7 @@ A simple tool which allows you to set up a ping or TCP-based monitor against a n
 
 ## Example Syntax and Usage
 (see "man threshold" for detailed info)<br />
-You can create a monitor/threshold to ping or establish TCP handshakes with a target IP or DNS hostname in a continual loop, and then execute a given command if triggered using the following syntax:
+You can create a monitor/threshold to ping, establish TCP handshakes, or download files from with a target IP or DNS hostname in a continual loop, and then execute a given command if triggered using the following syntax:
 
    *threshold -ciPt -d __target__ -a "__action__"*
 
@@ -31,7 +31,7 @@ __-c | --count__<br />
    Default is 3. The number of consective pings that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
 
 __-d | --destination__<br />
-   The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive for the parameters you define, then the action (-a) is taken
+   The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive for the parameters you define, then the action (-a) is taken. __Important Note:__ if you use a prefix of http:// or https:// the monitor will attempt to download the URL page which you define in destination (ie. http://mywebsite.com/somelargefile.zip). When doing a file transfer all other arguments are ignored except for -a, -t, and -b.  You can define (-t) which tells how long in seconds a transfer has to complete before triggering an action (default is 60). (-b) can be used to define a backoff interval in seconds between downloads. This is sometimes necessary when using with webservers that subsequent throttle web requests for security.
 
 __-i | --interval__<br />
    Default is 5. The interval in seconds that you want to send out a single ping. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
@@ -47,6 +47,9 @@ __-P | --port__<br />
 
 __-t | --timeout__<br />
    Default is 1. The time in seconds to wait for a response back to ping or TCP SYN/ACK from target. If used with (-P) then timeout is not only the amount of time to wait for response for TCP SYN/ACK, but also the time to wait before sending FIN on successful TCP connections.
+   
+__-b | --backoff__<br /> 
+   Default is 60. Only used when specifying a http:// or https:// before target host (-d). This is the interval in seconds between consecutive download tests. It sometimes needed if a target webserver throttles consecutive web requests from the same source.
 
 __-v | --version__<br />
    See the current version of threshold
