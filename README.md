@@ -57,13 +57,13 @@ __-v | --version__<br />
 ## Use cases and examples
 __Example \#1)__ Client machines have been experiencing sporadic connection timeouts when trying to SSH into a linux server (192.168.3.10). You suspect potential packet loss or high latency somewhere in the network. For troubleshooting you choose to use MTR to check the network path when the issue occurs again (credits:https://github.com/traviscross/mtr). MTR will run from one of the impacted client's machines:
 
-    sudo threshold -c 5 -d 192.168.3.10 -a "sudo mtr -r -c 100 192.168.3.10 >> mtr-results.txt"
+    sudo threshold -c 5 -d 192.168.3.10 -a "mtr -r -c 100 192.168.3.10 >> mtr-results.txt"
    
 The above example sets a simple ping monitor against (-d) *192.168.3.10*. If the host fails to respond to 5 consecutive pings (-c), the MTR tool will execute with its own arguments (-a), etc.
 
 __Example \#2)__ After troubleshooting some application issues, you noticed that you are getting occasional connection timeouts between your app server and database, "mydb.organization.org" (SQL/TCP 1433). You want to determine if this problem is due to a network issue or perhaps something higher up the stack. A packet capture with tcpdump may be appropriate at the next occurence of the issue (credits:http://www.tcpdump.org/):
 
-    sudo threshold -c 6 -d mydb.organization.org -P 1433 -a "sudo tcpdump -i eth0 host mydb.organization.org -c 1000000 -w db_capture.pcap"
+    sudo threshold -c 6 -d mydb.organization.org -P 1433 -a "tcpdump -i eth0 host mydb.organization.org -c 1000000 -w db_capture.pcap"
     
  The above example will continually monitor TCP handshakes with *mydb.organization.org*. If this host fails to respond to 6 consecutive handshakes (-c) on TCP port 1433 (-P) then a tcpdump packet capture will run and export results to a wireshark readable file (-a). Note that setting the -P argument tells threshold to use TCP handshakes instead of pings
  
