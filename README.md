@@ -67,11 +67,11 @@ __Example \#2)__ After troubleshooting some application issues, you noticed that
     
  The above example will continually monitor TCP handshakes with *mydb.organization.org*. If this host fails to respond to 6 consecutive handshakes (-c) on TCP port 1433 (-P) then a tcpdump packet capture will run and export results to a wireshark readable file (-a). Note that setting the -P argument tells threshold to use TCP handshakes instead of pings
  
- __Example \#3)__ You noticed that when downloading content from your webserver to your workstation, it sometimes takes longer than expected. From your particular network it usually takes about 5 minutes to complete a 100MB, but lately this less frequently the case. You decided that running an iperf3 client on your workstation to a iperf3 server on the webserver may be most appropriate to determine raw throughput capabilities of your network the next time the issue occurs (credits: https://iperf.fr/iperf-download.php)
+ __Example \#3)__ You noticed that when downloading content from your webserver to your workstation, it sometimes takes longer than expected. From your particular network it usually takes about 5 minutes to complete a 100MB, but lately this is less frequently the case. You decided that running an iperf3 client on your workstation to a iperf3 server on the webserver may be most appropriate to determine raw throughput capabilities of your network the next time the issue occurs (credits: https://iperf.fr/iperf-download.php)
 
     sudo threshold -d http://mywebserver.com/some/100MBfile.zip -t 300 -b 10 -a "iperf3 -c mywebserver.com -time 300 --logfile iperf3-results.txt"
     
-The above will download a "100MBfile.zip" file from your webserver. The download must complete in 5min or 300 seconds (-t) or the iperf3 action will be taken (-a). Downloads will repeat in a loop every 10 seconds (-b). 
+The above will download a "100MBfile.zip" file from your webserver. The download must complete in 5min or 300 seconds (-t) or the iperf3 action will be taken (-a). The interval between downloads is every 10 seconds (-b). 
 
 Also, note that threshold will know that it should use downloads as monitor rather than ping and TCP handshakes since you have prefixed the host with *http://*, telling it that it's monitoring a webserver. 
 
