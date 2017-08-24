@@ -28,7 +28,7 @@ __-a | --action__<br />
    The user-defined action to take if the threshold is triggered. This can be just about any command that you can execute from the command-line.
 
 __-c | --count__<br />
-   Default is 3. The number of consective pings that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
+   Default is 3. The number of consective pings that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail. 
 
 __-d | --destination__<br />
    The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive for the parameters you define, then the action (-a) is taken. __Important Note:__ if you use a prefix of http:// or https:// the monitor will attempt to download the URL page which you define in destination (ie. http://mywebsite.com/somelargefile.zip). When doing a file transfer all other arguments are ignored except for -a, -t, and -b.  You can define (-t) which tells how long in seconds a transfer has to complete before triggering an action (default is 60). (-b) can be used to define a backoff interval in seconds between downloads. This is sometimes necessary when using with webservers that subsequent throttle web requests for security.
