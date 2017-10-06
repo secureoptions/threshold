@@ -13,9 +13,7 @@ A simple tool which allows you to set up a ping, TCP-based, or HTTP/HTTPs file t
 
 ## Usage and Syntax
 (see "man threshold" for detailed info)<br />
-You can create a monitor/threshold to ping, establish TCP handshakes, or download files from with a target IP or DNS hostname in a continual loop, and then execute a given command if triggered using the following syntax:
-
-   *threshold -ciPt -d __target__ -a "__action__"*
+You can create a monitor/threshold to ping, establish TCP handshakes, or download files from with a target IP or DNS hostname in a continual loop, and then execute a given command if triggered.
 
 For example let's say you want to set up a ping monitor against target "192.168.1.1", which triggers a packet capture (tcpdump) after 5 consecutive failures:
 
