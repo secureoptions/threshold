@@ -16,6 +16,8 @@ mkdir /etc/threshold/pids/
 mkdir /etc/threshold/triggers/
 mkdir /etc/threshold/actions/
 mkdir /etc/threshold/curlpids/
+mkdir /etc/threshold/persistjobs/
+mkdir /etc/threshold/autoscript/
 
 
 # Check if device is a Mac or *nix
