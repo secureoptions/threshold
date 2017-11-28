@@ -32,6 +32,9 @@ else
    curl -o /usr/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh >> /dev/null 
    chmod 755 /usr/bin/threshold
  fi
+ 
+curl -o /etc/threshold/autoscript/threshold_persist https://raw.githubusercontent.com/secureoptions/threshold/master/threshold_persist.sh
+chmod 755 /etc/threshold/autoscript/threshold_persist
 
 curl -o /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1.man >> /dev/null
 gzip /usr/share/man/man1/threshold.1 >> /dev/null
