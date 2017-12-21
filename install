@@ -76,4 +76,5 @@ install > /dev/null 2>&1
 echo "Done!"
 echo "Use \"man threshold\" for usage details"
 
+
 rm -- $0
