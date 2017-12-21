@@ -53,7 +53,7 @@ __-v | --version__<br />
    See the current version of threshold
    
 __-p | --persist__<br />
-    When setting this argument, your threshold jobs will remain persistent even if their monitor is breached. In that case threshold will execute the action you define, and then start itself again with same job parameters. This argument MUST be set after the action parameter, or you will receive an error. Correct syntax should be:
+    When setting this argument, your threshold jobs will remain persistent even if their monitor is breached. In that case threshold will execute the action you define, and then start itself again with same job parameters. This argument MUST be set after the action parameter (-a " "), or you will receive an error. Correct syntax should be:
 
     threshold -d 192.16.0.5 -a "echo myaction" -p
     
