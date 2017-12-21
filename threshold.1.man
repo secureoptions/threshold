@@ -54,6 +54,10 @@ Default is 1. The time in seconds to wait for a response back to ping or TCP SYN
 .IP "-v | --version"
 see the current version of threshold
 
+.B
+.IP "-p | --persist"
+When setting this argument, your threshold jobs will remain persistent even if their monitor is breached. In that case threshold will execute the action you define, and then start itself again with same job parameters. This argument MUST be set after the action parameter (-a " "), or you will receive an error.
+
 .SH BUGS
 No known bugs at this time. Please contact benfowler2012@gmail.com if you come across any
  
