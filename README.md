@@ -54,7 +54,7 @@ __-v | --version__<br />
    
 __-p | --persist__<br />
     When setting this argument, your threshold jobs will remain persistent even if their monitor is breached. In that case threshold will execute the action you define, and then start itself again with same job parameters. This argument MUST be set after the action parameter, or you will receive an error. Correct syntax should be:
-    threshold -d <target> -a "<my action to take>" -p
+    threshold -d 192.16.0.5 -a "echo myaction" -p
     
 __-u | --uninstall__<br />
     Uninstall threshold from you system. This will also stop any current jobs you have running.
