@@ -52,6 +52,13 @@ __-b | --backoff__<br />
 __-v | --version__<br />
    See the current version of threshold
    
+__-p | --persist__<br />
+    When setting this argument, your threshold jobs will remain persistent even if their monitor is breached. In that case threshold will execute the action you define, and then start itself again with same job parameters. This argument MUST be set after the action parameter, or you will receive an error. Correct syntax should be:
+    threshold -d <target> -a "<my action to take>" -p
+    
+__-u | --uninstall__<br />
+    Uninstall threshold from you system. This will also stop any current jobs you have running.
+   
 ## Use cases and examples
 __(Example: Setting a ping monitor)__ Client machines have been experiencing sporadic connection timeouts when trying to SSH into a linux server (192.168.3.10). You suspect potential packet loss or high latency somewhere in the network. For troubleshooting you choose to use MTR to check the network path when the issue occurs again (credits:https://github.com/traviscross/mtr). MTR will run from one of the impacted client's machines:
 
