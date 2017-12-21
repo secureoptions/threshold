@@ -9,14 +9,49 @@ then
 	echo ""
     exit
 fi
-echo "Installing... "
 
+
+# check if there is any other older installation
+VERSION=$(threshold -v)
+uninstall()
+{
+	answer=${answer:-N}
+	answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
+	if [ "$answer" == "y" ]
+	then 	
+		echo "Cleaning up any running jobs..."
+		killall threshold > /dev/null 2>&1
+        echo "Uninstalling threshold..."
+		rm -Rf /etc/threshold/
+		rm -f /usr/share/man/man1/threshold.1.gz
+		rm -f /usr/bin/threshold
+		echo "Done!"
+	else
+		exit 0
+	fi
+}
+
+
+if [[ "$VERSION" =~ 'threshold v1' ]] 
+then 
+	echo -e "It looks like you have an older version (${VERSION}) which\nneeds to be uninstalled before installing the later version, v2.0."
+	read -p "Do you wish to proceed (N/y)? "  answer
+	uninstall
+elif [[ "$VERSION" =~ 'threshold v2.0' ]]
+then
+	echo -e "It looks like you are already on the latest version (${VERSION}).\nDo you want to reinstall threshold again with this same version (N/y)?"
+	read -p "" answer
+	uninstall
+fi	
+
+echo ""
+echo "Installing threshold v2.0... "
+
+install()
+{
 mkdir /etc/threshold/
-mkdir /etc/threshold/pids/
 mkdir /etc/threshold/triggers/
 mkdir /etc/threshold/actions/
-mkdir /etc/threshold/curlpids/
-mkdir /etc/threshold/persistjobs/
 
 
 # Check if device is a Mac or *nix
@@ -25,18 +60,19 @@ result=$?
 
 if [ $result -eq 0 ]
 then
-   curl -o /usr/local/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh >> /dev/null 
+   curl -o /usr/local/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh 
    chmod 755 /usr/local/bin/threshold
 else 
-   curl -o /usr/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh >> /dev/null 
+   curl -o /usr/bin/threshold https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.sh
    chmod 755 /usr/bin/threshold
  fi
  
 
-curl -o /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1.man >> /dev/null
-gzip /usr/share/man/man1/threshold.1 >> /dev/null
+curl -o /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1.man
+gzip /usr/share/man/man1/threshold.1
+} 
+install > /dev/null 2>&1
 
-echo ""
 echo "Done!"
 echo "Use \"man threshold\" for usage details"
 
