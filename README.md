@@ -54,6 +54,7 @@ __-v | --version__<br />
    
 __-p | --persist__<br />
     When setting this argument, your threshold jobs will remain persistent even if their monitor is breached. In that case threshold will execute the action you define, and then start itself again with same job parameters. This argument MUST be set after the action parameter, or you will receive an error. Correct syntax should be:
+
     threshold -d 192.16.0.5 -a "echo myaction" -p
     
 __-u | --uninstall__<br />
@@ -62,19 +63,19 @@ __-u | --uninstall__<br />
 ## Use cases and examples
 __(Example: Setting a ping monitor)__ Client machines have been experiencing sporadic connection timeouts when trying to SSH into a linux server (192.168.3.10). You suspect potential packet loss or high latency somewhere in the network. For troubleshooting you choose to use MTR to check the network path when the issue occurs again (credits:https://github.com/traviscross/mtr). MTR will run from one of the impacted client's machines:
 
-    sudo threshold -c 5 -d 192.168.3.10 -a "mtr -r -c 100 192.168.3.10 >> mtr-results.txt"
+    sudo threshold -c 5 -d 192.168.3.10 -a "mtr -r -c 100 192.168.3.10 >> mtr-results.txt" -p
    
 The above example sets a simple ping monitor against (-d) *192.168.3.10*. If the host fails to respond to 5 consecutive pings (-c), the MTR tool will execute with its own arguments (-a), etc.
 
 __(Example: Setting a TCP handshake monitor)__ After troubleshooting some application issues, you noticed that you are getting occasional connection timeouts between your app server and database, "mydb.organization.org" (SQL/TCP 1433). You want to determine if this problem is due to a network issue or perhaps something higher up the stack. A packet capture with tcpdump may be appropriate at the next occurence of the issue (credits:http://www.tcpdump.org/):
 
-    sudo threshold -c 6 -d mydb.organization.org -P 1433 -a "tcpdump -i eth0 host mydb.organization.org -c 1000000 -w db_capture.pcap"
+    sudo threshold -c 6 -d mydb.organization.org -P 1433 -a "tcpdump -i eth0 host mydb.organization.org -c 1000000 -w db_capture.pcap" -p
     
  The above example will continually monitor TCP handshakes with *mydb.organization.org*. If this host fails to respond to 6 consecutive handshakes (-c) on TCP port 1433 (-P) then a tcpdump packet capture will run and export results to a wireshark readable file (-a). Note that setting the -P argument tells threshold to use TCP handshakes instead of pings
  
  __(Example: Setting an HTTP/HTTPS file transfer monitor)__ You noticed that when downloading content from your webserver to your workstation, it sometimes takes longer than expected. From your particular network it usually takes about 5 minutes to complete a 100MB, but lately this is less frequently the case. You decided that running an iperf3 client on your workstation to a iperf3 server on the webserver may be most appropriate to determine raw throughput capabilities of your network the next time the issue occurs (credits: https://iperf.fr/iperf-download.php)
 
-    sudo threshold -d http://mywebserver.com/some/100MBfile.zip -t 300 -b 10 -a "iperf3 -c mywebserver.com -time 300 --logfile iperf3-results.txt"
+    sudo threshold -d http://mywebserver.com/some/100MBfile.zip -t 300 -b 10 -a "iperf3 -c mywebserver.com -time 300 --logfile iperf3-results.txt" -p
     
 The above will download a "100MBfile.zip" file from your webserver. The download must complete in 5min or 300 seconds (-t) or the iperf3 action will be taken (-a). The interval between downloads is every 10 seconds (-b). 
 
