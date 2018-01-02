@@ -31,7 +31,7 @@ LIST=0
 PERSIST=0
 UNINSTALL=0
 VERS=0
-VERSION="threshold v2.1"
+VERSION="v2.1"
 
 # Make sure there is at least one argument being used
 if [ $# -eq 0 ]
