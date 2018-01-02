@@ -32,12 +32,12 @@ uninstall()
 }
 
 
-if [[ "$VERSION" =~ 'threshold v1' ]] 
+if [[ "$VERSION" =~ 'threshold v1' ]] || [[ "$VERSION" =~ 'threshold v2.0' ]]
 then 
-	echo -e "It looks like you have an older version (${VERSION}) which\nneeds to be uninstalled before installing the later version, v2.0."
+	echo -e "It looks like you have an older version (${VERSION}) which\nneeds to be uninstalled before installing the later version, v2.1."
 	read -p "Do you wish to proceed (N/y)? "  answer
 	uninstall
-elif [[ "$VERSION" =~ 'threshold v2.0' ]]
+elif [[ "$VERSION" =~ 'threshold v2.1' ]]
 then
 	echo -e "It looks like you are already on the latest version (${VERSION}).\nDo you want to reinstall threshold again with this same version (N/y)?"
 	read -p "" answer
