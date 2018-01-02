@@ -46,7 +46,7 @@ then
 fi	
 
 echo ""
-echo "Installing threshold v2.0... "
+echo "Installing threshold ${LATEST}... "
 
 install()
 {
