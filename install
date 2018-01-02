@@ -86,8 +86,8 @@ then
 	answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 	if [ "$answer" == y ]
 	then
-		uninstall
-		install
+		uninstall > /dev/null 2>&1
+		install > /dev/null 2>&1
 	else
 		echo "Exiting installation, nothing to do"
 		exit 0
@@ -99,8 +99,8 @@ else
 	answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 	if [ "$answer" == y ]
 	then
-		uninstall
-		install
+		uninstall > /dev/null 2>&1
+		install > /dev/null 2>&1
 	else
 		echo "Exiting installation, nothing to do"
 		exit 0
