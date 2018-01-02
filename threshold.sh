@@ -252,6 +252,47 @@ then
 		exit 0
 	fi
 fi
+	test_tcp(){
+	# This function will be used to test a TCP connection against a HTTP/HTTPs host prior to running transfer monitor
+	# See whether URL is HTTP or HTTPS
+	DEFAULT_PORT=$(cut -f1 -d ":"  <<< "$HOSTIP")
+
+	# Get get all characters after http[s]://
+	RAW_URL=$(awk -F "://" '{print $2}' <<< "$HOSTIP")
+
+	# Get the hostname ONLY (ex. 'mysite.com')
+	ADDRESS=$(cut -f1 -d ":" <<< "$RAW_URL")
+	ADDRESS=$(cut -f1 -d "/" <<< "$ADDRESS")
+
+	# See if custom port exists. If so, the run a TCP connection test on that port, test the default HTTP or HTTPS port
+	CUSTOM_PORT=$(grep -Po '(?<=:).*?(?=/)' <<< "$RAW_URL")
+
+	if [ "$CUSTOM_PORT" == "" ]
+	then
+	    if [ $DEFAULT_PORT == "http" ]
+	    then
+	        nc -w 5 $ADDRESS 80
+	    else
+	        nc -w 5 $ADDRESS 443
+	    fi
+	else
+	    nc -w 5 $ADDRESS $CUSTOM_PORT
+	fi
+	# After attempting to connect to TCP port seen above, see if the connection was successful or not before proceeding
+	RESULT=$?
+	if [ "$RESULT" -eq 1 ]
+	then
+		echo "" >> /dev/tty
+		echo "Unable to establish TCP connection with $ADDRESS . Exiting threshold, no action executed" >> /dev/tty
+		logger "$0 -- Unable to establish TCP connection with $ADDRESS . Exiting threshold, no action executed"
+		PARENT=$(head -1 "$TRIGGER" )
+		kill -9 "$PARENT"
+		rm -f "$TRIGGER"
+		rm -f "$USER_COMMAND"
+		exit 0
+	fi
+
+}
 
 main_script(){
 
@@ -279,7 +320,8 @@ main_script(){
 				echo "" >> "$TRIGGER"
 				}
 				curl_loop() {
-
+						# First test to make sure actual TCP can be established to the host
+						test_tcp
 						# Now do the actual transfer monitor
 						curl -o /dev/null -s -k "$HOSTIP" &
 						EXIST=$!
