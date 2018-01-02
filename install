@@ -20,11 +20,11 @@ uninstall()
 	then 	
 		echo "Cleaning up any running jobs..."
 		killall threshold > /dev/null 2>&1
-        echo "Uninstalling threshold..."
+        	echo "Uninstalling threshold..." > /dev/tty
 		rm -Rf /etc/threshold/
 		rm -f /usr/share/man/man1/threshold.1.gz
 		rm -f /usr/bin/threshold
-		echo "Done!"
+		echo "Done!" > /dev/tty
 	else
 		exit 0
 	fi
@@ -32,8 +32,8 @@ uninstall()
 
 install()
 {
-	echo ""
-	echo "Installing threshold ${LATEST}... "
+	echo "" > /dev/tty
+	echo "Installing threshold ${LATEST}... " > /dev/tty
 	
 	mkdir /etc/threshold/
 	mkdir /etc/threshold/triggers/
@@ -57,8 +57,8 @@ install()
 	curl -o /usr/share/man/man1/threshold.1 https://raw.githubusercontent.com/secureoptions/threshold/master/threshold.1.man
 	gzip /usr/share/man/man1/threshold.1
 	
-	echo "Done!"
-	echo "Use \"man threshold\" for usage details"
+	echo "Done!" > /dev/tty
+	echo "Use \"man threshold\" for usage details" > /dev/tty
 
 
 	rm -- $0
