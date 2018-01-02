@@ -32,7 +32,7 @@ uninstall()
 	fi
 }
 
-elif [ "$VERSION" == "$LATEST" ]
+if [ "$VERSION" == "$LATEST" ]
 then 
 	echo -e "It looks like you are already on the latest version (${VERSION}).\nDo you want to reinstall threshold again with this same version (N/y)?"
 	read -p "" answer
