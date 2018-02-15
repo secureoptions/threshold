@@ -84,7 +84,7 @@ then
 	echo "It looks like you are already on the latest version (${VERSION}).\nDo you want to reinstall threshold again with this same version (N/y)?"
 	read -p "" answer
 	answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
-	if [ "$answer" == y ]
+	if [ "$answer" == "y" ]
 	then
 		uninstall > /dev/null 2>&1
 		install > /dev/null 2>&1
@@ -97,7 +97,7 @@ else
 	echo "It looks like you have an older version (${VERSION}) which\nneeds to be uninstalled before installing the later version, $LATEST."
 	read -p "Do you wish to proceed (N/y)? "  answer
 	answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
-	if [ "$answer" == y ]
+	if [ "$answer" == "y" ]
 	then
 		uninstall > /dev/null 2>&1
 		install > /dev/null 2>&1
