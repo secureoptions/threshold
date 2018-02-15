@@ -2,7 +2,7 @@
 
 # This script will go through and install 'threshold' on the local machine. Please see license agreement before continuing https://raw.githubusercontent.com/secureoptions/threshold/master/LICENSE
 
-if [ $(id -u) -ne 0 ]
+if [ "$(id -u)" -ne 0 ]
 then 
 	echo ""
 	echo "Permission denied (must be superuser)"
@@ -79,7 +79,7 @@ fi
 	
 
 # If there is a pre-existing version, check version and prompt to reinstall
-if [ "$VERSION" == "$LATEST" ]
+if [ "$VERSION" = "$LATEST" ]
 then 
 	echo "It looks like you are already on the latest version (${VERSION}).\nDo you want to reinstall threshold again with this same version (N/y)?"
 	read -r "" answer
@@ -106,10 +106,3 @@ else
 		exit 0
 	fi
 fi
-
-
-
-
-
-
-
