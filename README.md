@@ -102,3 +102,7 @@ You can delete ALL active jobs or a specific job<br />
 \# a specific job<br />
    `threshold -k 1478`
     
+IMPORTANT! Note, that killing threshold job(s) will NOT kill actions that have already been executed by threshold job(s). You will need to stop these actions manually. For example if you have several "tcpdump" actions currently running, you can delete them all like so:
+    `killall tcpdump`
+
+    `
