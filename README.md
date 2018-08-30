@@ -3,9 +3,6 @@ A simple tool which allows you to set up a ping, TCP-based, or HTTP/HTTPs file t
 
 [![Threshold Tutorial](https://s3-us-west-2.amazonaws.com/cloudshroud/Screen+Shot+2018-04-03+at+5.37.49+PM.png)](https://youtu.be/tobassA9pdA)
 
-## Contributions
-As with this and all the projects I've developed, it's my great honor and privilege to give credit first to my Lord and Savior, Jesus Christ, who gives me the inspiration, ability, and skills to build. Secondly, I want to acknowledge my lovely wife, Sarah, who is always supportive of me.
-
 ## Installation
 \# *From Linux or Mac OS terminal download the installation script from Github*<br />
 `curl -O https://raw.githubusercontent.com/secureoptions/threshold/master/install`<br />
