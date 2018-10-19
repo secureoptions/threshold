@@ -59,6 +59,11 @@ __-p | --persist__<br />
 
     threshold -d 192.16.0.5 -a "echo myaction" -p
     
+__-6 | --ipv6__<br />
+   Uses ipv6 rather than ipv4. It is important to add this argument *_at the end_* of the command like so:
+   
+    threshold -d 192.16.0.5 -a "echo myaction" -6
+
 __-u | --uninstall__<br />
     Uninstall threshold from you system. This will also stop any current jobs you have running.
    
