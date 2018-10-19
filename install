@@ -10,7 +10,7 @@ then
     exit
 fi
 
-LATEST="v2.1"
+LATEST="v2.2"
 
 uninstall()
 {
