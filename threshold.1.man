@@ -59,6 +59,10 @@ see the current version of threshold
 When setting this argument, your threshold jobs will remain persistent even if their monitor is breached. In that case threshold will execute the action you define, and then start itself again with same job parameters. This argument MUST be set after the action parameter (-a " "), or you will receive an error.
 
 .B
+.IP "-6 | --ipv6"
+Uses ipv6 rather than ipv4. It is important that you add this option to the end of the entire command
+
+.B
 .IP "-u | --uninstall"
 Uninstall threshold from your system. This will also stop any current jobs you have running.
 
