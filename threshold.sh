@@ -31,7 +31,8 @@ LIST=0
 PERSIST=0
 UNINSTALL=0
 VERS=0
-VERSION="v2.1"
+IPV6=0
+VERSION="v2.2"
 
 # Make sure there is at least one argument being used
 if [ $# -eq 0 ]
@@ -91,7 +92,10 @@ else
 				UNINSTALL=1
 				shift;shift
 				;;
-
+			-6|--ipv6)
+				IPV6=1
+				shift;shift
+				;;
 			*)
 				echo "$0: Unknown argument \"${1}\"" >&2
 				echo "see \"man threshold\" for usage details" >&2
@@ -267,7 +271,7 @@ fi
 	# See if custom port exists. If so, the run a TCP connection test on that port, test the default HTTP or HTTPS port
 	CUSTOM_PORT=$(grep -Po '(?<=:).*?(?=/)' <<< "$RAW_URL")
 
-	if [ "$CUSTOM_PORT" == "" ]
+	if [ "$CUSTOM_PORT" == "" ] && [ $IPV6 -eq 0 ]
 	then
 	    if [ $DEFAULT_PORT == "http" ]
 	    then
@@ -278,6 +282,19 @@ fi
 	else
 	    nc -w 5 $ADDRESS $CUSTOM_PORT
 	fi
+
+	if [ "$CUSTOM_PORT" == "" ] && [ $IPV6 -eq 1 ]
+	then
+	    if [ $DEFAULT_PORT == "http" ]
+	    then
+	        nc -6 -w 5 $ADDRESS 80
+	    else
+	        nc -6 -w 5 $ADDRESS 443
+	    fi
+	else
+	    nc -6 -w 5 $ADDRESS $CUSTOM_PORT
+	fi
+
 	# After attempting to connect to TCP port seen above, see if the connection was successful or not before proceeding
 	RESULT=$?
 	if [ "$RESULT" -eq 1 ]
@@ -322,8 +339,14 @@ main_script(){
 				curl_loop() {
 						# First test to make sure actual TCP can be established to the host
 						test_tcp
-						# Now do the actual transfer monitor
-						curl -o /dev/null -s -k "$HOSTIP" &
+						if [ $IPV6 -eq 0 ]
+						then
+							# Now do the actual transfer monitor
+							curl -o /dev/null -s -k "$HOSTIP" &
+						else
+							curl -g -6 -o /dev/null -s -k "$HOSTIP" &
+						fi
+
 						EXIST=$!
 						TIME=0
 						while true; do
@@ -365,7 +388,13 @@ main_script(){
 			elif [ $PORT -eq 0 ]
 			then
 				while true; do
-					ping -c "$COUNT" -i "$INTERVAL" -W "$TIMEOUT" "$HOSTIP" 
+					if [ $IPV6 -eq 0 ]
+					then
+						ping -c "$COUNT" -i "$INTERVAL" -W "$TIMEOUT" "$HOSTIP" 
+					else
+						ping6 -c "$COUNT" -i "$INTERVAL" -W "$TIMEOUT" "$HOSTIP"
+					fi
+
 					result=$?
 					if [ $result -ne 0 ]
 					then 
@@ -385,7 +414,13 @@ main_script(){
 				while true; do
 					i=0
 					while [ $i -lt $COUNT ]; do
-						nc -w "$TIMEOUT" "$HOSTIP" "$PORT" 
+						if [ $IPV6 -eq 0 ]
+						then
+							nc -w "$TIMEOUT" "$HOSTIP" "$PORT" 
+						else
+							nc -6 -w "$TIMEOUT" "$HOSTIP" "$PORT"
+						fi
+
 						result=$?
 						if [ $result -ne 0 ]
 						then 
