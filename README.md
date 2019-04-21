@@ -5,10 +5,14 @@ A simple tool which allows you to set up a ping, TCP-based, or HTTP/HTTPs file t
 
 ## Installation
 \# *From Linux or Mac OS terminal download the installation script from Github*<br />
-`curl -O https://raw.githubusercontent.com/secureoptions/threshold/master/install`<br />
+`curl -O https://github.com/secureoptions/threshold/raw/master/threshold-3.1.tar.gz`<br />
+
+\# *Unpack and change into installation directory*<br />
+`tar -xvzf threshold-3.1.tar.gz`<br />
+`cd threshold-3.1/`<br />
 
 \# *Run the installation script*<br />
-`sudo sh install`<br />
+`sudo ./install`<br />
 
 \# *Verify installation*<br />
 `sudo threshold --version`<br />
