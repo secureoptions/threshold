@@ -1,8 +1,6 @@
 # threshold
 A simple tool which allows you to set up a ping, TCP-based, or HTTP/HTTPs file transfer monitor against a network host. The monitor will execute a user-defined command if it detects failure to the host.
 
-[![Threshold Tutorial](https://s3-us-west-2.amazonaws.com/cloudshroud/Screen+Shot+2018-04-03+at+5.37.49+PM.png)](https://youtu.be/tobassA9pdA)
-
 ## Installation
 \# *From Linux or Mac OS terminal download the source code from Github*<br />
 `curl -O https://github.com/secureoptions/threshold/raw/master/threshold-3.1.tar.gz`<br />
