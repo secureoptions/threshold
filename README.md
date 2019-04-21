@@ -3,7 +3,7 @@ A simple tool which allows you to set up a ping, TCP-based, or HTTP/HTTPs file t
 
 ## Installation
 \# *From Linux or Mac OS terminal download the source code from Github*<br />
-`curl -O https://github.com/secureoptions/threshold/raw/master/threshold-3.1.tar.gz`<br />
+`wget https://github.com/secureoptions/threshold/raw/master/threshold-3.1.tar.gz`<br />
 
 \# *Unpack and change into installation directory*<br />
 `tar -xvzf threshold-3.1.tar.gz`<br />
