@@ -13,7 +13,7 @@ A simple tool which allows you to set up a ping, TCP-based, or HTTP/HTTPs file t
 `sudo ./install`<br />
 
 \# *Verify installation*<br />
-`sudo threshold --version`<br />
+`threshold --version`<br />
 
 ## Usage and Syntax
 (see "man threshold" for detailed info)<br />
