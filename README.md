@@ -2,6 +2,7 @@
 A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, or HTTP/HTTPs file transfer monitor against a network host. The monitor will execute a user-defined action if it detects failure to the host.
 <br>
 - [Installation](#installation)
+- [Command-Line Structure](#structure)
 - [Parameters](#parameters)
 - [Examples and Scenarios](#examples)
 - [Tips and Best Practices](#tips)
@@ -21,6 +22,13 @@ A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, o
 
 \# *Verify installation*<br />
 `threshold --version`<br />
+
+<br>
+<a name="structure">
+   
+## Command Structure
+
+<img src="./Illustration.png">
 
 <br>
 <a name="parameters">
