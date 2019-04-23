@@ -119,3 +119,5 @@ Note that threshold will know that it should use downloads as monitor rather tha
 5) Consider setting up multiple types of monitoring against one destination, with multiple criteria, settings and actions (followup analysis). This is helpful when you don't know which layer an issue is happening at.
 
 6) Match appropriate actions with appropriate monitors. For example, it may make more sense to run a MTR as a followup action to a ping monitor, compared to running an iperf3 test as an action, etc. Conversely, it may make more sense to run an iperf3 test as the followup action to an HTTP file transfer monitor.
+
+7) Your actions should have self-contained limits. For example, you might want to specify a max filesize of 10MB on pcaps, or a timelimit on iperf3 test, etc. These limits help reduce overall consumption and load on your system when you're away.
