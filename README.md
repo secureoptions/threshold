@@ -117,3 +117,5 @@ Note that threshold will know that it should use downloads as monitor rather tha
 4) Don't make the monitors too tolerant. You could miss critical events. To balance too aggressive vs. too tolerant, research and understand as much about the issue as you can prior to configuring a monitor.
 
 5) Consider setting up multiple types of monitoring against one destination, with multiple criteria, settings and actions (followup analysis). This is helpful when you don't know which layer an issue is happening at.
+
+6) Match appropriate actions with appropriate monitors. For example, it may make more sense to run a MTR as a followup action to a ping monitor, compared to running an iperf3 test as an action, etc. Conversely, it may make more sense to run an iperf3 test as the followup action to an HTTP file transfer monitor.
