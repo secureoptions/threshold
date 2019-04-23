@@ -27,7 +27,7 @@ A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, o
    
 ## Command Structure
 
-
+<img src="./Illustration.png">
 
 <br>
 <a name="parameters">
