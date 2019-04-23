@@ -18,7 +18,7 @@ A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, o
 `cd threshold-3.1/`<br />
 
 \# *Run the installation script*<br />
-`sudo ./install`<br />
+`sudo ./install.sh`<br />
 
 \# *Verify installation*<br />
 `threshold --version`<br />
