@@ -5,7 +5,6 @@ A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, o
 - [Parameters](#parameters)
 - [Examples and Scenarios](#examples)
 - [Tips and Best Practices](#tips)
-<br>
 
 <br>
 <a name="installation"></a>
