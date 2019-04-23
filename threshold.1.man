@@ -20,31 +20,43 @@ threshold is a network tool which allows you to set up a simple monitor/trigger 
 .SH OPTIONS
 .B 
 .IP "-a | --action"
-The user-defined action to take if the threshold is triggered. This can be just about any command that you can execute from the command-line.
+The user-defined action to take if the threshold monitor is triggered. This can be just about any command that you can execute from a linux system CLI.
+
+.B 
+.IP "-b | --backoff"
+Default is 60. Only used when specifying a http:// or https:// as target host (-d). This is the interval in seconds between consecutive download tests. It is sometimes needed if a target webserver throttles consecutive web requests from the same source.
 
 .B
 .IP "-c | --count"
-Default is 3. The number of consective ping packets that must fail response from target before triggering action. If using with TCP handshakes (-P), it's the number of consecutive handshakes that must fail.
+Default is 3. The number of *consective* pings that must fail before the threshold monitor is considered to be in a failed state. If used with TCP handshakes (-P), it's the number of consecutive handshakes that must fail before the monitor is considered in a failed state. 
 
 .B
 .IP "-d | --destination"
-The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive, then the defined action (-a) is taken
+The target host IP or DNS hostname that you want to monitor. If this host becomes unresponsive for the parameters you define, then the action (-a "<ACTION>") is taken. __Important Note:__ if you use a prefix of http:// or https:// in the destination, this will create a download monitor which checks the actual download transfer time against the timeout (-t) that you have defined. If the download transfer time exceeds the timeout, then the monitor is considered in a failed state.
 
 .B
 .IP "-i | --interval"
-Default is 5. The interval in seconds that you want to send out a ping packet. If used with TCP (-P) the interval in seconds that TCP handshakes will be initiated
+Default is 5. The interval in seconds at which you want to send out individual ping packets. If used with TCP (-P), the interval in seconds that TCP handshakes will be initiated.
 
 .B
 .IP "-k | --kill"
-Use to kill either a specific trigger/action job (ie. threshold -k 3509), or kill ALL trigger/action jobs (ie. kill -k all)
+Use to kill either a specific threshold monitor job (ie. threshold -k 3509) or kill ALL jobs (ie. threshold -k)
 
 .B
 .IP "-l | --list"
-List the active trigger/action jobs
+List the active threshold monitor jobs
 
 .B
 .IP "-P | --port"
-The TCP port that will be used to establish TCP handshakes on. Using this flag will also cause threshold to use TCP rather than ICMP/ping. Also, successful TCP handshakes are followed by TCP FINs to close the connection when TIMEOUT (-t) expires.
+The TCP port that will be used to establish TCP handshakes on. Using this flag will also cause threshold to use a TCP-handshake monitor rather than a ping monitor. 
+
+.B
+.IP "-L | --latency"
+The maximum latency in milliseconds that a ping monitor can *average*. A ping monitor's average is calculated based on the number of pings it uses (-c). Therefore, its average latency reading is more accurate with the higher number of pings it's configured to use.
+
+.B
+.IP "-o | --logging"
+User-defined log location for threshold. This is logging for threshold monitoring (not to be confused with *action* output). Default location is /var/log/threshold.log
 
 .B
 .IP "-t | --timeout"
@@ -56,7 +68,7 @@ see the current version of threshold
 
 .B
 .IP "-p | --persist"
-When setting this argument, your threshold jobs will remain persistent even if their monitor is breached. In that case threshold will execute the action you define, and then start itself again with same job parameters. This argument MUST be set after the action parameter (-a " "), or you will receive an error.
+When setting this argument, your threshold monitor will remain persistent even if it has failed once. In this scenario, the monitor will execute the action you define, and then start itself again with same job parameters. 
 
 .B
 .IP "-6 | --ipv6"
