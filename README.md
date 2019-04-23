@@ -22,7 +22,6 @@ A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, o
 
 \# *Verify installation*<br />
 `threshold --version`<br />
-
 <br>
 <a name="structure">
    
