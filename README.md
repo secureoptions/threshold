@@ -1,5 +1,14 @@
 # threshold
 A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, or HTTP/HTTPs file transfer monitor against a network host. The monitor will execute a user-defined action if it detects failure to the host.
+<br>
+- [Installation](#installation)
+- [Parameters](#parameters)
+- [Examples and Scenarios](#examples)
+- [Tips and Best Practices](#tips)
+<br>
+
+<br>
+<a name="installation"></a>
 
 ## Installation
 \# *From Linux or Mac OS terminal download the source code from Github*<br />
@@ -15,8 +24,10 @@ A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, o
 \# *Verify installation*<br />
 `threshold --version`<br />
 
-## Options
-
+<br>
+<a name="parameters">
+   
+## Parameters
 __-a | --action__<br />
    The user-defined action to take if the threshold monitor is triggered. This can be just about any command that you can execute from a linux system CLI.
 
@@ -61,6 +72,9 @@ __-v | --version__<br />
     
 __-6 | --ipv6__<br />
    Uses ipv6 rather than ipv4.
+ 
+<br>
+<a name="examples">
    
 ## Use cases and examples
 __(Example: Setting a ping monitor)__ Client machines have been experiencing sporadic connection timeouts when trying to SSH into a linux server (192.168.3.10). You suspect potential packet loss or high latency somewhere in the network. For troubleshooting you choose to use MTR to check the network path when the issue occurs again (credits:https://github.com/traviscross/mtr). MTR will run from one of the impacted client's machines:
@@ -85,6 +99,9 @@ Aside from default values, the above monitor will download a "100MBfile.zip" fil
 
 Note that threshold will know that it should use downloads as monitor rather than ping and TCP handshakes since you have prefixed the host with *http://*, telling it that it's monitoring a webserver. 
 
+<br>
+<a name="tips">
+   
 ## Tips for successful monitoring
 1) Make sure monitors will not fail immediately upon starting them. For example, make sure you can actually ping *example.com* before setting up a monitor against it
 
