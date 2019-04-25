@@ -15,7 +15,7 @@ A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, o
 
 \# *Unpack and change into installation directory*<br />
 `tar -xvzf threshold-3.2.tar.gz`<br />
-`cd threshold-3.1/`<br />
+`cd threshold-3.2/`<br />
 
 \# *Run the installation script*<br />
 `sudo ./install.sh`<br />
