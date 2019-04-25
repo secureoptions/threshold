@@ -6,6 +6,7 @@ A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, o
 - [Parameters](#parameters)
 - [Examples and Scenarios](#examples)
 - [Tips and Best Practices](#tips)
+- [Threshold Logging](#logging)
 <br>
 <a name="installation"></a>
 
@@ -121,3 +122,8 @@ Note that threshold will know that it should use downloads as monitor rather tha
 6) Match appropriate actions with appropriate monitors. For example, it may make more sense to run a MTR as a followup action to a ping monitor, compared to running an iperf3 test as an action, etc. Conversely, it may make more sense to run an iperf3 test as the followup action to an HTTP file transfer monitor.
 
 7) Your actions should have self-contained limits. For example, you might want to specify a max filesize of 10MB on pcaps, or a timelimit on iperf3 test, etc. These limits help reduce overall consumption and load on your system when you're away.
+
+## Threshold Logging
+You can specify the path that you want threshold to log information about jobs by using the __-o__ flag. Logging contains information such as when jobs started, when and if they failed, or if they were stopped by a user. This log tells you what happen to threshold jobs *NOT* the subsequent actions that were executed. If you want the output and results of actions, you will need to define those output parameters within the action itself.
+
+Logging is helpful with all monitors, but especially the HTTP/HTTPs monitor. Not only will it tell you if a download failed to complete within a given timeout (-t), it will also log whether the download failed due to a particular HTTP/HTTPs error response code or if there was a TCP connection error.
