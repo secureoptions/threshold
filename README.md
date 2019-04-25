@@ -67,7 +67,7 @@ __-P | --port__<br />
    The TCP port that will be used to establish TCP handshakes on. Using this flag will also cause threshold to use a TCP-handshake monitor rather than a ping monitor. 
 
 __-t | --timeout__<br />
-   Default is 1. The time in seconds to wait for a response back to ping or TCP SYN/ACK from target. If used with (-P) then timeout is not only the amount of time to wait for response for TCP SYN/ACK, but also the time to wait before sending FIN on successful TCP connections.
+   Default is 1. The time in seconds to wait for a response back to ping or TCP SYN/ACK from target. If used with (-P) then timeout is not only the amount of time to wait for response for TCP SYN/ACK, but also the time to wait before sending FIN on successful TCP connections. When used with HTTP/HTTPs monitor, it is the maximum amount of time a download has to complete before placing the monitor into a 'failed' state, triggering the action.
 
 __-u | --uninstall__<br />
    Uninstall threshold from your system. This will also stop any current jobs you have running.
