@@ -123,6 +123,9 @@ Note that threshold will know that it should use downloads as monitor rather tha
 
 7) Your actions should have self-contained limits. For example, you might want to specify a max filesize of 10MB on pcaps, or a timelimit on iperf3 test, etc. These limits help reduce overall consumption and load on your system when you're away.
 
+<br>
+<a name="logging">
+
 ## Threshold Logging
 You can specify the path that you want threshold to log information about jobs by using the __-o__ flag. Logging contains information such as when jobs started, when and if they failed, or if they were stopped by a user. This log tells you what happen to threshold jobs *NOT* the subsequent actions that were executed. If you want the output and results of actions, you will need to define those output parameters within the action itself.
 
