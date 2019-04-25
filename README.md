@@ -11,10 +11,10 @@ A simple tool which allows you to set up a packet-loss/latency, TCP-handshake, o
 
 ## Installation
 \# *From Linux terminal download the source code from Github*<br />
-`wget https://github.com/secureoptions/threshold/raw/master/threshold-3.1.tar.gz`<br />
+`wget https://github.com/secureoptions/threshold/raw/master/threshold-3.2.tar.gz`<br />
 
 \# *Unpack and change into installation directory*<br />
-`tar -xvzf threshold-3.1.tar.gz`<br />
+`tar -xvzf threshold-3.2.tar.gz`<br />
 `cd threshold-3.1/`<br />
 
 \# *Run the installation script*<br />
